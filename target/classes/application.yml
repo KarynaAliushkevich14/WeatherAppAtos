@@ -1,0 +1,18 @@
+server.port:  8090
+
+url: https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+key: ea55909b3da405c992153748db757253
+
+city:
+  madrid: '{"id": "1", "name": "Madrid", "lat": "40.416", "lon": "-3.703"}'
+  london: '{"id": "2", "name": "London", "lat": "51.508", "lon": "-0.126"}'
+  paris:  '{"id": "3", "name": "Paris", "lat": "48.853", "lon": "2.349"}'
+  warsaw: '{"id": "4", "name": "Warsaw", "lat": "52.230", "lon": "21.012"}'
+  prague: '{"id": "5", "name": "Prague", "lat": "50.088", "lon": "14.421"}'
+  kyiv:   '{"id": "6", "name": "Kyiv", "lat": "50.433", "lon": "30.517"}'
+  oslo:   '{"id": "7", "name": "Oslo", "lat": "59.913", "lon": "10.746"}'
+  minsk:  '{"id": "8", "name": "Minsk", "lat": "53.900", "lon": "27.567"}'
+  bratislava: '{"id": "9", "name": "Bratislava", "lat": "48.148", "lon": "17.107"}'
+  rome:   '{"id": "10", "name": "Rome", "lat": "41.895", "lon": "112.484"}'
+
+

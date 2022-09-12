@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Start</title>
+</head>
+<body>
+<h3> Please select cities: </h3>
+
+<form class="ui form" th:action="@{/selectedCities}" method="post" th:object="${weather}">
+    <ul>
+      <li th:each="city : ${selectableCities}">
+        <div class="ui checkbox">
+            <input type="checkbox" th:field="*{cities}" th:value="${city.id}"  >
+            <label th:text="${city.name}"></label>
+        </div>
+      </li>
+    </ul>
+
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+</body>
+</html>
