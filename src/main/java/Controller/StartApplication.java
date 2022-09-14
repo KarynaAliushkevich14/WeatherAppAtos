@@ -16,18 +16,13 @@ public class StartApplication {
         WeatherService ws = new WeatherService();
         WeatherController wc = new WeatherController();
         Weather weather = new Weather();
-        int numberOfURL = wc.getHardcodeSelectedCities().size();
 
         try {
-            //for(int i=0; i<numberOfURL; i++){
-                //ws.getRequestResponse(numberOfURL);
                 wc.hardcodeAddedSelectedCities();
-
                 System.out.println(ws.returnWeatherArray()+"\n");
                 ws.setWeatherFields(weather);
                 System.out.println(weather.getIcon()+" "+weather.getDescription()+weather.getMain()+" "+weather.getId());
                 System.out.println();
-            //}
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

@@ -1,15 +1,7 @@
 package Controller;
 
-import JsonService.SettingsProperties;
-import JsonService.WeatherService;
-import Model.Weather;
 import Model.CityWithSelection;
-import lombok.Getter;
-import lombok.Setter;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +15,6 @@ import java.util.Map;
 public class WeatherController {
 
     //from properties.yml
-    @Value("${url}")
-    @Getter
-    private String url;
-    @Value("${key}")
-    @Getter
-    private String key;
 
     @Value("#{${city.madrid}}")
     private Map<String, String> madrid;
@@ -52,7 +38,7 @@ public class WeatherController {
     private Map<String, String> rome;
 
     //fields
-    private ArrayList<CityWithSelection> allCitiesWithSelection = new ArrayList<CityWithSelection>();
+    private ArrayList<CityWithSelection> allCitiesWithSelection = new ArrayList<CityWithSelection>() ;
     //HARDCODE STARTS
     private static CityWithSelectionListWrapper wrapperWithSelectedCities = new CityWithSelectionListWrapper();
     private static ArrayList<CityWithSelection> hardcodeSelectedCities = new ArrayList<CityWithSelection>();
@@ -66,10 +52,6 @@ public class WeatherController {
     }
     //HARDCODE ENDS
 
-    public String validation () {
-        return urlValidation(getHardcodeSelectedCities().get(0));
-    }
-
 
     //constructor
     public WeatherController() {
@@ -77,15 +59,6 @@ public class WeatherController {
         allCitiesWithSelection.add(new CityWithSelection("2","London","40.2", "50.1", false));
         allCitiesWithSelection.add(new CityWithSelection("3","Ottawa","40.2", "50.1", false));
     }
-
-    //urlValidation
-    public String urlValidation (CityWithSelection cityWithSelection){
-        String newURL = url.replace("{lat}", cityWithSelection.getLat())
-                .replace("{lon}", cityWithSelection.getLon())
-                .replace("{API key}", key);
-        return newURL;
-    }
-
 
     @GetMapping("/currentWeather")
     public String index(Model model) {
@@ -103,13 +76,6 @@ public class WeatherController {
 
         model.addAttribute("wrapper", wrapperWithSelectedCities);
         return "selectedCities";
+
     }
-
-
-    @GetMapping("/getUrl")
-    public String getUrl(Model model) {
-        model.addAttribute("url", validation());
-        return "url";
-    }
-
 }
