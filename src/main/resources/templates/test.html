@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3> Please select cities: </h3>
+
+<form class="ui form" th:method="POST" th:action="@{/selectedCities}"  th:object="${wrapper}">
+
+<tr th:each="currentCity, stat : ${wrapper.cityList}">
+    <div class="ui checkbox">
+        <input type="checkbox"
+               th:name="${currentCity.getName()}"
+               th:value="${currentCity.getId()}"
+               th:checked="${currentCity.selected}">
+
+        <label th:text="${currentCity.getName()}" ></label>
+    </div>
+</tr>
+
+
+<div class="field">
+    <button type="submit" >Submit</button>
+</div>
+</form>
+</body>
+</html>

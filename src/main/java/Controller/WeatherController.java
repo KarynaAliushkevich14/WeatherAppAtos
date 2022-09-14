@@ -97,8 +97,10 @@ public class WeatherController {
 
     @PostMapping("/selectedCities")
     public String postListOfCities (@ModelAttribute("wrapper") CityWithSelectionListWrapper wrapper, Model model) throws IOException, InterruptedException {
+
         wrapperWithSelectedCities = wrapper;
         hardcodeAddedSelectedCities();
+
         model.addAttribute("wrapper", wrapperWithSelectedCities);
         return "selectedCities";
     }
