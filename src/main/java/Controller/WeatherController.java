@@ -1,18 +1,22 @@
 package Controller;
 
-import Model.City;
+import JsonService.SettingsProperties;
+import JsonService.WeatherService;
+import Model.Weather;
+import Model.CityWithSelection;
 import lombok.Getter;
+import lombok.Setter;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import Model.Weather;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import Model.CityWithSelectionListWrapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -47,46 +51,63 @@ public class WeatherController {
     @Value("#{${city.rome}}")
     private Map<String, String> rome;
 
-    public String urlValidation (City city){
-        String newURL= getUrl().replaceFirst("\\{lat\\}", city.getLat())
-                .replaceFirst("\\{lon\\}", city.getLon())
-                .replaceFirst("\\{API key\\}", key);
+    //fields
+    private ArrayList<CityWithSelection> allCitiesWithSelection = new ArrayList<CityWithSelection>();
+    //HARDCODE STARTS
+    private static CityWithSelectionListWrapper wrapperWithSelectedCities = new CityWithSelectionListWrapper();
+    private static ArrayList<CityWithSelection> hardcodeSelectedCities = new ArrayList<CityWithSelection>();
+    public static ArrayList<CityWithSelection> getHardcodeSelectedCities() {
+        return hardcodeSelectedCities;
+    }
+    public void hardcodeAddedSelectedCities() {
+        hardcodeSelectedCities.add(new CityWithSelection("1","Madrid","40.2", "50.1", true));
+        hardcodeSelectedCities.add(new CityWithSelection("2","London","40.2", "50.1", true));
+        wrapperWithSelectedCities.setCitiesList(hardcodeSelectedCities);
+    }
+    //HARDCODE ENDS
+
+    public String validation () {
+        return urlValidation(getHardcodeSelectedCities().get(0));
+    }
+
+
+    //constructor
+    public WeatherController() {
+        allCitiesWithSelection.add(new CityWithSelection("1","Madrid","40.2", "50.1", false));
+        allCitiesWithSelection.add(new CityWithSelection("2","London","40.2", "50.1", false));
+        allCitiesWithSelection.add(new CityWithSelection("3","Ottawa","40.2", "50.1", false));
+    }
+
+    //urlValidation
+    public String urlValidation (CityWithSelection cityWithSelection){
+        String newURL = url.replace("{lat}", cityWithSelection.getLat())
+                .replace("{lon}", cityWithSelection.getLon())
+                .replace("{API key}", key);
         return newURL;
     }
 
-    private List<City> selectableCities;
 
     @GetMapping("/currentWeather")
-    public String getListOfCities(Model model) {
-        Weather weather = new Weather();
-        selectableCities = Arrays.asList(
-                new City(madrid.get("id"),madrid.get("name"),madrid.get("lat"), madrid.get("lon")),
-                new City(london.get("id"),london.get("name"),london.get("lat"), london.get("lon")),
-                new City(paris.get("id"),paris.get("name"),paris.get("lat"), paris.get("lon")),
-                new City(warsaw.get("id"),warsaw.get("name"),warsaw.get("lat"), warsaw.get("lon")),
-                new City(prague.get("id"),prague.get("name"),prague.get("lat"), prague.get("lon")),
-                new City(kyiv.get("id"),kyiv.get("name"),kyiv.get("lat"), kyiv.get("lon")),
-                new City(oslo.get("id"),oslo.get("name"),oslo.get("lat"), oslo.get("lon")),
-                new City(minsk.get("id"),minsk.get("name"),minsk.get("lat"), minsk.get("lon")),
-                new City(bratislava.get("id"),bratislava.get("name"),bratislava.get("lat"), bratislava.get("lon")),
-                new City(rome.get("id"),rome.get("name"),rome.get("lat"),rome.get("lon"))
-        );
-        model.addAttribute("selectableCities", selectableCities);
-        model.addAttribute("weather", weather);
-        return "checkbox";
+    public String index(Model model) {
+        CityWithSelectionListWrapper wrapper = new CityWithSelectionListWrapper();
+        wrapper.setCitiesList(allCitiesWithSelection);
+        model.addAttribute("wrapper", wrapper);
+        return "test";
     }
 
     @PostMapping("/selectedCities")
-    public String postListOfCities (@ModelAttribute ArrayList<City> city) {
-        System.out.println("Cities created");
-        System.out.println(city);
-
-        ArrayList<City> n = new ArrayList<>();
-        n.addAll(city);
-
-
-
+    public String postListOfCities (@ModelAttribute("wrapper") CityWithSelectionListWrapper wrapper, Model model) throws IOException, InterruptedException {
+        wrapperWithSelectedCities = wrapper;
+        hardcodeAddedSelectedCities();
+        model.addAttribute("wrapper", wrapperWithSelectedCities);
         return "selectedCities";
     }
-}
 
+
+    @GetMapping("/getUrl")
+    public String getUrl(Model model) {
+        model.addAttribute("url", validation());
+        return "url";
+    }
+
+}

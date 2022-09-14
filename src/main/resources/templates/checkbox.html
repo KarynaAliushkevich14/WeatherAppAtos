@@ -7,14 +7,14 @@
 <body>
 <h3> Please select cities: </h3>
 
-<form class="ui form" th:action="@{/selectedCities}" method="post" th:object="${weather}">
+<form class="ui form" th:action="@{/order}" method="post" th:object="${weather}">
     <ul>
-      <li th:each="city : ${selectableCities}">
-        <div class="ui checkbox">
-            <input type="checkbox" th:field="*{cities}" th:value="${city.id}"  >
-            <label th:text="${city.name}"></label>
-        </div>
-      </li>
+        <li th:each="city : ${selectableCities}">
+            <div class="ui checkbox">
+                <input type="checkbox" th:field="*{cities}" th:value="${city.id}"  >
+                <label th:text="${city.name}"></label>
+            </div>
+        </li>
     </ul>
 
     <div>

@@ -1,4 +1,3 @@
-server.port:  8090
 
 url: https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 key: ea55909b3da405c992153748db757253
@@ -15,4 +14,4 @@ city:
   bratislava: '{"id": "9", "name": "Bratislava", "lat": "48.148", "lon": "17.107"}'
   rome:   '{"id": "10", "name": "Rome", "lat": "41.895", "lon": "112.484"}'
 
-
+server.port:  8090

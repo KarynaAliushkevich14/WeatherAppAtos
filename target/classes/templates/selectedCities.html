@@ -2,12 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Selected Cities</title>
+    <title>Selected Cities Order</title>
 </head>
 <body>
 
-<h3>Selectd Cities</h3>
+<h3>Selected cities: </h3>
 
+<li th:each="city : ${wrapper.cityList}">
+    <label th:text="${city.getName()}"></label>
+</li>
+
+<label th:text="${returnMain}"></label>
 
 </body>
 </html>
