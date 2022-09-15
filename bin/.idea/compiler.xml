@@ -8,8 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WeatherApp" />
-        <module name="WeatherAppAtos-main" />
-        <module name="WeatherAppNew" />
       </profile>
     </annotationProcessing>
   </component>

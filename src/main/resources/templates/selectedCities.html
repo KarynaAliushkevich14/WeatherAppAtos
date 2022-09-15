@@ -8,11 +8,10 @@
 
 <h3>Selected cities: </h3>
 
-<li th:each="city : ${wrapper.cityList}">
+<li th:each="city : ${cities}">
     <label th:text="${city.getName()}"></label>
 </li>
 
-<label th:text="${returnMain}"></label>
 
 </body>
 </html>
