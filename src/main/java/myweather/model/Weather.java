@@ -17,6 +17,7 @@ public class Weather {
     private String main;
     private String description;
     private String icon;
+    private int temperature;
 
 
     public void setId(int id) {
@@ -31,6 +32,9 @@ public class Weather {
     public void setIcon(String icon) {
     	this.icon = icon;
     }
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
 
 
     @Override
@@ -40,6 +44,7 @@ public class Weather {
                 ", main='" + main + '\'' +
                 ", description='" + description + '\'' +
                 ", icon='" + icon + '\'' +
+                ", temp='" + temperature + '\'' +
                 '}';
     }
 }

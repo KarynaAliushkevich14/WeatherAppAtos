@@ -32,10 +32,11 @@ public class WeatherService {
         weather.setMain(returnWeatherArray(lat, lon).getString("main"));
         weather.setId(returnWeatherArray(lat, lon).getInt("id"));
         weather.setDescription(returnWeatherArray(lat, lon).getString("description"));
+        weather.setTemperature(returnWeatherTemp(lat, lon).getInt("temp"));
         return weather;
     }
 
-    //String URL = "https://api.openweathermap.org/data/2.5/weather?lat=40.416&lon=-3.703&appid=ea55909b3da405c992153748db757253";
+    //String URL = "https://api.openweathermap.org/data/2.5/weather?lat=41.895&lon=112.484&appid=33e00d482f5deafa608560965822312a";
 
     private JSONObject getRequestResponse(String lat, String lon)  {
         HttpClient client = HttpClient.newHttpClient();
@@ -63,6 +64,11 @@ public class WeatherService {
         return obj_JSON;
     }
     //set to Weather fields JSON fields
+
+    private  JSONObject returnWeatherTemp (String lat, String lon)  {
+        JSONObject weatherTemperature = getRequestResponse( lat, lon).getJSONObject("main");
+        return weatherTemperature;
+    }
 
     //RestTemplate -> Weather.class
 

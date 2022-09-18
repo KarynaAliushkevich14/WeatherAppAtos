@@ -1,6 +1,6 @@
 
 url: https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-key: ea55909b3da405c992153748db757253
+key: 33e00d482f5deafa608560965822312a
 
 city:
   madrid: '{"id": "1", "name": "Madrid", "lat": "40.416", "lon": "-3.703"}'

@@ -7,11 +7,11 @@
 <body>
 
 <h3> Please select cities: </h3>
-<form class="ui form" th:method="POST" th:action="@{/selectedCities}"  th:object="${cities}">
+<form class="ui form" th:method="POST" th:action="@{/selectedCities}" th:object="${cities}">
     <tr th:each="currentCity, stat : ${cities}">
         <div class="ui checkbox">
-            <input type="checkbox"
-                   th:name="${currentCity.getName()}"
+            <input type="checkbox" name="cityIndexes"
+                   th:label="${currentCity.getName()}"
                    th:value="${currentCity.getId()}">
 
             <label th:text="${currentCity.getName()}" ></label>
