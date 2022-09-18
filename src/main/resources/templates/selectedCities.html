@@ -8,9 +8,9 @@
 
 <h3>Selected cities: </h3>
 
-    <tr th:each="weather : ${weatherFromSelectedCities}">
-        <div class="main"><p class="mains" th:text="${weather.getMain()}"></p></div>
-</tr>
+<div th:each="weather : ${weatherFromSelectedCities}">
+    <div class="main"><p class="mains" th:text="${weather.getMain()}"></p></div>
+</div>
 
 
 </body>
