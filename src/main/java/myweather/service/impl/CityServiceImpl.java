@@ -5,12 +5,10 @@ import myweather.model.CityWithSelection;
 import myweather.model.Weather;
 import myweather.service.CityService;
 import myweather.service.WeatherService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import myweather.repository.CityDAO;
 import java.util.List;
 
-//@Service
 @Component
 @AllArgsConstructor
 public class CityServiceImpl implements CityService {
@@ -28,6 +26,7 @@ public class CityServiceImpl implements CityService {
     public CityWithSelection getById(int id) {
         return cityDAO.findById(id);
     }
+
 
     @Override
     public List<CityWithSelection> getCitiesIndex() {

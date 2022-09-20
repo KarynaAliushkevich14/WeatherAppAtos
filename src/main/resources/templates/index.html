@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Index All cities</title>
 </head>
-<body>
+<body >
 
 <h3> Please select cities: </h3>
 <form class="ui form" th:method="POST" th:action="@{/selectedCities}" th:object="${cities}">
@@ -17,7 +17,7 @@
             <label th:text="${currentCity.getName()}" ></label>
         </div>
     </tr>
-
+<p></p>
     <div class="field">
         <button type="submit" >Submit</button>
     </div>

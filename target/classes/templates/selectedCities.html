@@ -2,20 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link href="style.css" rel="stylesheet" type="text/css">
     <title>Selected Cities Order</title>
 </head>
 <body>
 
 <h3>Selected cities: </h3>
-
-<div th:each="weather : ${weatherFromSelectedCities}">
-    <div>
-        <div class="main"><p class="mains" th:text="${weather.getMain()}"></p></div>
-        <div class="main"><p class="mains" th:text="${weather.getDescription()}"></p></div>
-        <div class="main"><p class="mains" th:text="${weather.getTemperature()}"></p></div>
-    </div>
+<p></p>
+<div>
+    <ul th:each="weather : ${weatherFromSelectedCities}">
+        <li class="main" th:text="${weather.getName()}"></li>
+        <li class="main" th:text="${weather.getMain()}"></li>
+        <li class="mains" th:text="${weather.getDescription()}"></li>
+        <li class="mains" th:text="${weather.getTemperature()}"></li>
+        <img class="icon" th:src="${weather.getIcon}"/>
+    </ul>
 </div>
-
+<p></p>
 
 </body>
 </html>

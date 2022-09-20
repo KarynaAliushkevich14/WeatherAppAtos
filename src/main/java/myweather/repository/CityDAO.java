@@ -27,6 +27,11 @@ import java.util.List;
                     .stream().findAny().orElse(null);
         }
 
+        public CityWithSelection findByLat(String lat) {
+            return jdbcTemplate.query("SELECT * FROM city WHERE lat=?", new Object[]{lat}, new BeanPropertyRowMapper<>(CityWithSelection.class))
+                    .stream().findAny().orElse(null);
+        }
+
     }
 
 

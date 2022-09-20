@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Nunito+Sans:wght@600&family=Rubik:wght@500&display=swap');
+
+body, html{
+    height: 200%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg{
+    background-image: url("bg.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+}
+
+.container{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+.widget {
+    width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    background: rgba(299, 299, 299, 0.4);
+}

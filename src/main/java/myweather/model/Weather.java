@@ -13,13 +13,17 @@ import lombok.Setter;
 
 public class Weather {
 
+    private String name;
     private int id;
     private String main;
     private String description;
     private String icon;
-    private int temperature;
+    private String temperature;
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
     public void setId(int id) {
     	this.id = id;
     }
@@ -32,7 +36,7 @@ public class Weather {
     public void setIcon(String icon) {
     	this.icon = icon;
     }
-    public void setTemperature(int temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 
@@ -41,6 +45,7 @@ public class Weather {
     public String toString() {
         return "Weather{" +
                 "id=" + id +
+                " name=" + name +
                 ", main='" + main + '\'' +
                 ", description='" + description + '\'' +
                 ", icon='" + icon + '\'' +
