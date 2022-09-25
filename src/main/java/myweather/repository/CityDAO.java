@@ -32,6 +32,11 @@ import java.util.List;
                     .stream().findAny().orElse(null);
         }
 
+        public CityWithSelection findNameIgnoreCase(String name) {
+            return jdbcTemplate.query("SELECT * FROM city WHERE name=?", new Object[]{name}, new BeanPropertyRowMapper<>(CityWithSelection.class))
+                    .stream().findAny().orElse(null);
+        }
+
     }
 
 

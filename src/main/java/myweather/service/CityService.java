@@ -12,4 +12,6 @@ public interface CityService {
     CityWithSelection getById(int id);
 
     List<CityWithSelection> getCitiesIndex();
+
+    CityWithSelection getByName(String name);
 }

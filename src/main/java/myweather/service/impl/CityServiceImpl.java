@@ -32,4 +32,9 @@ public class CityServiceImpl implements CityService {
     public List<CityWithSelection> getCitiesIndex() {
         return cityDAO.index();
     }
+
+    @Override
+    public CityWithSelection getByName(String name) {
+        return cityDAO.findNameIgnoreCase(name);
+    }
 }
