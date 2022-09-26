@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="errorName" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="cityName" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -29,36 +30,54 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "errorName"
+    "cityName",
+    "id"
 })
-@XmlRootElement(name = "getWeatherError")
-public class GetWeatherError {
+@XmlRootElement(name = "GetWeatherRequest")
+public class GetWeatherRequest {
 
-    @XmlElement(required = true, nillable = true)
-    protected String errorName;
+    @XmlElement(required = true)
+    protected String cityName;
+    protected int id;
 
     /**
-     * Gets the value of the errorName property.
+     * Gets the value of the cityName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getErrorName() {
-        return errorName;
+    public String getCityName() {
+        return cityName;
     }
 
     /**
-     * Sets the value of the errorName property.
+     * Sets the value of the cityName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setErrorName(String value) {
-        this.errorName = value;
+    public void setCityName(String value) {
+        this.cityName = value;
+    }
+
+    /**
+     * Gets the value of the id property.
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
     }
 
 }

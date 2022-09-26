@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="temp" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
+ *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "temp"
+    "desc"
 })
-@XmlRootElement(name = "GetWeatherResponse")
-public class GetWeatherResponse {
+@XmlRootElement(name = "GetWeatherRequestFault")
+public class GetWeatherRequestFault {
 
-    @XmlElement(required = true, type = Double.class, nillable = true)
-    protected Double temp;
+    @XmlElement(required = true)
+    protected String desc;
 
     /**
-     * Gets the value of the temp property.
+     * Gets the value of the desc property.
      * 
      * @return
      *     possible object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public Double getTemp() {
-        return temp;
+    public String getDesc() {
+        return desc;
     }
 
     /**
-     * Sets the value of the temp property.
+     * Sets the value of the desc property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Double }
+     *     {@link String }
      *     
      */
-    public void setTemp(Double value) {
-        this.temp = value;
+    public void setDesc(String value) {
+        this.desc = value;
     }
 
 }

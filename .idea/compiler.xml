@@ -10,14 +10,12 @@
         <module name="WeatherAppAtos-main" />
         <module name="WeatherAppNew" />
         <module name="WeatherApp" />
-        <module name="weatherAppSOAP" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="WeatherApp" options="-parameters" />
-      <module name="weatherAppSOAP" options="-parameters" />
     </option>
   </component>
 </project>

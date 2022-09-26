@@ -10,8 +10,8 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "getWeatherError", targetNamespace = "http://www.example.org/NewWSDLFile/")
-public class GetWeatherError_Exception
+@WebFault(name = "GetWeatherRequestFault", targetNamespace = "http://www.example.org/WeatherSOAP/")
+public class GetWeatherRequestFaultMessage
     extends Exception
 {
 
@@ -19,14 +19,14 @@ public class GetWeatherError_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private GetWeatherError faultInfo;
+    private GetWeatherRequestFault faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public GetWeatherError_Exception(String message, GetWeatherError faultInfo) {
+    public GetWeatherRequestFaultMessage(String message, GetWeatherRequestFault faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class GetWeatherError_Exception
      * @param cause
      * @param message
      */
-    public GetWeatherError_Exception(String message, GetWeatherError faultInfo, Throwable cause) {
+    public GetWeatherRequestFaultMessage(String message, GetWeatherRequestFault faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class GetWeatherError_Exception
     /**
      * 
      * @return
-     *     returns fault bean: net.atos.weatherApi.GetWeatherError
+     *     returns fault bean: myweather.GetWeatherRequestFault
      */
-    public GetWeatherError getFaultInfo() {
+    public GetWeatherRequestFault getFaultInfo() {
         return faultInfo;
     }
 

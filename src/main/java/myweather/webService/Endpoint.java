@@ -9,9 +9,9 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @org.springframework.ws.server.endpoint.annotation.Endpoint
-public class Endpoint implements NewWSDLFile {
+public class Endpoint implements WeatherSOAP {
 
-    private static final String URI = "http://www.example.org/NewWSDLFile";
+    private static final String URI = "http://www.example.org/WeatherSOAP/";
 
     private final CityService cityService;
 
@@ -20,24 +20,25 @@ public class Endpoint implements NewWSDLFile {
     }
 
     @Override
-    @PayloadRoot(namespace = URI, localPart = "GetWeather")
+    @PayloadRoot(namespace = URI, localPart = "GetWeatherRequest")
     @ResponsePayload
-    public GetWeatherResponse getWeather(@RequestPayload GetWeather parameters) throws GetWeatherError_Exception {
+    public GetWeatherResponse getWeatherOperation(@RequestPayload GetWeatherRequest parameters) throws GetWeatherRequestFaultMessage {
 
         try {
-            System.out.println(parameters.getCityWithSelectionName());
-            CityWithSelection selectedCity = cityService.getByName(parameters.getCityWithSelectionName());
+            System.out.println(parameters.getCityName());
+            System.out.println(parameters.getId());
+            CityWithSelection selectedCity = cityService.getByName(parameters.getCityName());
             Weather weather = cityService.getWeather(selectedCity.getLat(), selectedCity.getLon());
+            System.out.println(weather.getTemperature());
 
             GetWeatherResponse response = new GetWeatherResponse();
-            response.setTemperature(Double.valueOf(weather.getTemperature()));
+            response.setTemp(Double.valueOf(weather.getTemperature().split(" ")[0]));
 
             return response;
-
         } catch (Exception e) {
-            GetWeatherError getWeatherError = new GetWeatherError();
-            getWeatherError.setErrorName(e.getMessage());
-            throw new GetWeatherError_Exception("error", getWeatherError);
+            GetWeatherRequestFault getWeatherError = new GetWeatherRequestFault();
+            getWeatherError.setDesc(e.getMessage());
+            throw new GetWeatherRequestFaultMessage("Error: city doesn't exist", getWeatherError);
         }
     }
 }
